@@ -74,7 +74,7 @@ App.post('/auth/login', async (request, response) => {
       const token = sign({ userId: user.id }, "v12gym");
   
       // Enviar o token como resposta
-      response.json({ status: true, token });
+      response.json({ status: true, data: {token, user: user} });
     } catch (error) {
       console.error(error);
       response.status(500).json({ message: 'Erro no servidor' });
