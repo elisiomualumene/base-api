@@ -87,13 +87,13 @@ App.post("/user", upload.single('avatar') ,async (request, response) => {
 
     const hashPassword = await hash(password, 8)
 
-    const user = await database.user.findFirst({where: {email}});
+    const alreadyExists = await database.user.findFirst({where: {email}});
 
-    if(user){
+    if(alreadyExists){
         return response.status(401).json({message: "User already exists!"})
     }
     
-    await database.user.create({
+    const user = await database.user.create({
         data: {
             name,
             email,
@@ -149,13 +149,13 @@ App.use(authenticateToken)
 App.post("/artigo", async (request, response) => {
     const {name, isAvailable, description} = IArtigoProps.parse(request.body)
 
-    const artigo = await database.user.findFirst({where: {name}});
+    const artigoAlreadyExists = await database.user.findFirst({where: {name}});
 
-    if(artigo){
+    if(artigoAlreadyExists){
         return response.status(401).json({message: "Artigo already exists!"})
     }
 
-    await database.artigos.create({data: {name, isAvailable, description}})
+    const artigo = await database.artigos.create({data: {name, isAvailable, description}})
     
     
     return response.status(200).json({status: true, message: "Artigo was created", data: artigo})
