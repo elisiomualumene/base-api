@@ -1,11 +1,11 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "IPIL Software Documentation",
-        "description": "This is an API to Instituto Politecnico Industrial de Luanda",
+        "title": "V12 GYM DOCUMENTATION",
+        "description": "This is an API to V12 GYM",
         "version": "1.0.0",
         "contact": {
-            "email": "ipilmakarenko@gmail.com"
+            "email": "v12gym@gmail.com"
         }
     },
     "paths": {
@@ -34,9 +34,9 @@
                                     }
                                 },
                                 "example": {
-                                    "name": "Ipil",
-                                    "email":"ipilTeste@gmail.com",
-                                    "password": "ipiltest_password",
+                                    "name": "v12",
+                                    "email":"v12Teste@gmail.com",
+                                    "password": "v12test_password",
                                     "personalData_id": "202033ld300ddmsm230202"
                                 }
                             }
@@ -68,10 +68,7 @@
                                             "password": {
                                                 "type": "string"
                                             },
-                                            "emial": {
-                                                "type": "string"
-                                            },
-                                            "personalData_id": {
+                                            "email": {
                                                 "type": "string"
                                             },
                                             "created_at": {

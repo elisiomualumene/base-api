@@ -14,5 +14,15 @@ model User {
   phone_number Int 
   adress String
   nif Int
+  avatar String @default("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqDivUHi9y4fYLshSUB8sPJX3TbLqBBXZHog&usqp=CAU")
   description String
+  created_at DateTime @default(now())
+}
+
+model Artigos {
+  id Int @id @default(autoincrement())
+  name String  @unique
+  description String
+  isAvailable Boolean @default(true)
+  created_at DateTime @default(now())
 }
