@@ -4,6 +4,7 @@ import Express, {json, Response} from "express"
 import SwaggerUI from "swagger-ui-express"
 import swaggerFile from "./docs/swagger.json"
 import multer from "multer"
+import cors from "cors"
 import { PrismaClient } from "@prisma/client"
 import { hash, compare } from "bcrypt"
 import {sign} from "jsonwebtoken"
@@ -16,7 +17,7 @@ const App = Express();
 
 
 App.use(json())
-
+App.use(cors())
 
 const database = new PrismaClient();
 
