@@ -3,10 +3,14 @@ import * as z from "zod"
 import Express, {json, Response} from "express"
 import SwaggerUI from "swagger-ui-express"
 import swaggerFile from "./docs/swagger.json"
+import multer from "multer"
 import { PrismaClient } from "@prisma/client"
 dotenv.config();
 
+const upload = multer({dest: "uploads/"})
+
 const App = Express();
+
 
 App.use(json())
 
@@ -40,8 +44,9 @@ App.get("/", (request, response) => {
     return response.status(200).json({message: "V12 SERVER"})
 })
 
-App.post("/user", async (request, response) => {
+App.post("/user", upload.single('avatar') ,async (request, response) => {
     const {name, email, phone_number, adress, nif, description} = IUserProps.parse(request.body)
+    const avatar = request.file?.path
 
     const user = await database.user.findFirst({where: {email}});
 
@@ -56,7 +61,8 @@ App.post("/user", async (request, response) => {
             phone_number,
             adress,
             nif,
-            description
+            description,
+            avatar
         }
     })
     return response.status(200).json({status: true, message: "User was created", data: user})
