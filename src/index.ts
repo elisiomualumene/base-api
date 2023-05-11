@@ -15,9 +15,9 @@ const upload = multer({dest: "uploads/"})
 
 const App = Express();
 
-
-App.use(json())
 App.use(cors())
+App.use(json())
+
 
 const database = new PrismaClient();
 
